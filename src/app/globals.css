@@ -2,32 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #d8d8d0;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+#questionData label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  font-size: large;
+}
+#questionData input {
+  font-size: large;
+  padding: 0.25em;
+}
+
+#login label {
+  margin: 1em;
+  padding: 0.5;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+}
+#login input {
+  padding: 0.25em;
+  border-radius: 0.5em;
+}
+
+.underline-slide {
+  position: relative;
+}
+.underline-slide::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #9e4c00;
+  transition: width 200ms;
+}
+.underline-slide:hover::before {
+  width: 100%;
+}
+
+#questionCount label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  text-align: right;
+}
+#questionCount input[type="radio"] {
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  background-image: radial-gradient(white, white 30%, #002c83 70%);
+  padding: 0.25em;
+}
+#questionCount input[type="radio"]:checked {
+  background-image: radial-gradient(#00b80f, #00b919 30%, white 70%);
+  padding: 0.25em;
 }
