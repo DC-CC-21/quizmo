@@ -7,7 +7,7 @@ type QuizCardProps = {
   quizData: QuizData;
   editMode?: boolean;
   deleteQuizHandler?: any;
-  removeQuizHandler: (event:any) => Promise<void>;
+  removeQuizHandler?: (event:any) => Promise<void>;
 };
 
 
