@@ -186,7 +186,6 @@ export default function QuestionUpdate({
 
           {/* List of Options: */}
           {currentQuestion?.options.map((option, index) => {
-            console.log(option, currentQuestion);
             return (
               <li
                 // Option list item

@@ -4,10 +4,13 @@ const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "450px"
+      },
       backgroundImage: {
         "gradient-radial":
           "radial-gradient(var(--tw-gradient-stops))",
@@ -17,8 +20,8 @@ const config: Config = {
       colors: {
         l_orange: "#cc5800",
         d_orange: "#9e4c00",
-        l_blue: "#0038bb",
-        d_blue: "#002c83",
+        l_blue: "hsl(222, 100%, 37%)",
+        d_blue: "hsl(220, 100%, 26%)",
         q_white: "#d8d8d0",
       },
       keyframes: {
@@ -33,7 +36,7 @@ const config: Config = {
       },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
-        breathe: 'breathe 1s ease-in-out infinite',
+        breathe: 'breathe 1s ease-in-out infinite'
       }
     },
   },

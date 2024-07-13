@@ -14,7 +14,6 @@ export default function QuizPage(): JSX.Element {
   const params = useSearchParams()
   const [quiz, setQuiz] = useState<QuizData | null>(null);
   const quizzes_id = params.get("id")
-  
   // Fetch the quiz data when the component mounts or when the quizzes_id parameter changes
   useEffect(() => {
     async function load() {

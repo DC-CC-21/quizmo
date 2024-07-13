@@ -10,7 +10,7 @@ export default async function Header() {
     <header className="bg-l_blue p-2 flex justify-between">
       <h1 className="text-3xl font-bold text-l_orange">Quizmo</h1>
       <a
-        href="/account/login"
+        href={!userToken ? "/account/login" : `/account/profile/${userToken.users_id}`}
         className={` ${width} hover:animate-breathe rounded-full bg-q_white p-2 h-10 text-center`}
       >
         {userToken?.username[0].toUpperCase() || "Login"}

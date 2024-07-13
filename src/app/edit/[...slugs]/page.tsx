@@ -34,7 +34,7 @@ export default function QuizEditPage(): JSX.Element {
       types: "Both",
       isNew: true,
     };
-
+    setCurrentQuestionIndex(data.length);
     setData([...questionData, newQuestion]);
   }
 
@@ -48,25 +48,13 @@ export default function QuizEditPage(): JSX.Element {
       body: JSON.stringify(data),
     });
     if (res.ok) {
+      loadData();
       setMessages(["Saved Changes"]);
     } else {
       setMessages([...messages, "Failed to save changes"]);
     }
   }
-
-  // Get the quiz name and id from the URL parameters
-  const params = useParams();
-  const id = params.slugs[0];
-
-  // State variables for the quiz data, current question, and all options
-  const [data, setData] = useState<QuestionData[]>();
-  const [currentQuestionIndex, setCurrentQuestionIndex] =
-    useState<number>(0);
-  const [messages, setMessages] = useState<string[]>([]);
-  const [quizName, setQuizName] = useState<string>("Loading...");
-
-  // Fetch the quiz data from the API and set the state variables
-  useEffect(() => {
+  async function loadData() {
     fetch(`/api/questionsById?quizzes_id=${id}`)
       .then((res) => res.json())
       .then((response) => {
@@ -83,6 +71,22 @@ export default function QuizEditPage(): JSX.Element {
           allOptions.push(...question.options);
         });
       });
+  }
+
+  // Get the quiz name and id from the URL parameters
+  const params = useParams();
+  const id = params.slugs[0];
+
+  // State variables for the quiz data, current question, and all options
+  const [data, setData] = useState<QuestionData[]>();
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    useState<number>(0);
+  const [messages, setMessages] = useState<string[]>([]);
+  const [quizName, setQuizName] = useState<string>("Loading...");
+
+  // Fetch the quiz data from the API and set the state variables
+  useEffect(() => {
+    loadData();
   }, [id, messages]);
 
   // Check if the quiz name and id are valid
@@ -116,6 +120,7 @@ export default function QuizEditPage(): JSX.Element {
         setData={setData}
         currentQuestionIndex={currentQuestionIndex}
         data={data}
+        key={currentQuestionIndex}
       />
       {/* Save button */}
       <button

@@ -7,7 +7,6 @@ export async function middleware(req: NextRequest) {
     const userToken = await GetUserCookie()
     console.log("middleware")
     if (path.startsWith("/account/login")) {
-        console.log("login")
         if (userToken?.loggedIn) {
             console.log("redirected")
             return NextResponse.redirect(new URL("/", req.url))

@@ -63,3 +63,19 @@ body {
   background-image: radial-gradient(#00b80f, #00b919 30%, white 70%);
   padding: 0.25em;
 }
+
+
+.addBtn:hover .addBtn-add,
+.addBtn:hover .addBtn-bg {
+  opacity:1;
+}
+.addBtn:hover .addBtn-text {
+  opacity:0;
+}
+
+.addBtn-text {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
