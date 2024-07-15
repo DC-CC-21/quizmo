@@ -1,12 +1,14 @@
+import Link from "next/link";
+
 export default function Nav() {
   return (
     <nav className="p-2 bg-d_blue text-q_white">
       <ul className="flex flex-row gap-4">
         <li>
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
         </li>
         <li>
-          <a href="/edit">Edit</a>
+          <Link href="/edit">Edit</Link>
         </li>
       </ul>
     </nav>

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
  * Asynchronous function that renders the Home page with editable quizzes.
  * @returns {JSX.Element} The main component for the Home page.
  */
-export default function Home() {
+export default function QuizEditHome() {
   async function addQuizHandler() {
     let res = await fetch("/api/addQuiz", {
       method: "POST",

@@ -2,6 +2,7 @@
 
 import { MouseEventHandler, useEffect, useState } from "react";
 import QuizData from "../lib/QuizData";
+import Link from "next/link";
 
 type QuizCardProps = {
   quizData: QuizData;
@@ -21,7 +22,7 @@ type QuizCardProps = {
 export default function QuizCard({
   quizData,
   editMode,
-  removeQuizHandler,
+  removeQuizHandler = () => Promise.resolve(),
 }: QuizCardProps): JSX.Element {
   // Determine the path for the link based on whether edit mode is enabled or not
   let path = `/quiz?id=${quizData.quizzes_id}`;
@@ -47,7 +48,7 @@ export default function QuizCard({
   // Render the quiz card
   return (
     // The quiz card is a link to the quiz or edit mode
-    <a
+    <Link
       className={`bg-l_blue p-0 rounded-lg ${editClasses} h-[6em] w-full`}
       href={path}
       onClick={removeQuizHandler}
@@ -70,6 +71,6 @@ export default function QuizCard({
       <p className="p-2 text-right">
         Questions: {questionCount}
       </p>
-    </a>
+    </Link>
   );
 }

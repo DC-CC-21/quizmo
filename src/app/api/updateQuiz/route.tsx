@@ -11,8 +11,9 @@ export async function POST(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const quizzes_id = params.get("quizzes_id");
 
-  console.log(quizzes_id);
   const body = await request.json();
+  console.log(quizzes_id);
+  console.log(body)
 
   // Check if the quiz ID is valid
   if (!quizzes_id || !isValidUUID(quizzes_id)) {
@@ -20,8 +21,16 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    // Update quiz name
+    if (body.quizName) {
+      sql`UPDATE quiz SET quiz_name = ${body.quizName} WHERE quizzes_id = ${quizzes_id}`;
+    }
+    // Update visibility
+    if (body.public !== undefined) {
+      sql`UPDATE quiz SET public = ${body.public} WHERE quizzes_id = ${quizzes_id}`;
+    }
     // For each question in the request body...
-    body.forEach(async (question: QuestionData) => {
+    body.data.forEach(async (question: QuestionData) => {
       if (question.isNew) {
         console.log("Adding Question");
         // If the question is new, insert it into the database

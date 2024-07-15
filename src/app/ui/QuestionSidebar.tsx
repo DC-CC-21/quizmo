@@ -14,13 +14,20 @@ export default function QuestionSidebar({
   AddQuestionHandler: React.MouseEventHandler<HTMLButtonElement>;
   setCurrentQuestionIndex: Dispatch<number>;
 }) {
+  function shortenQuestion(question: string): string {
+    if (question.length > 25) {
+      return question.substring(0, 25) + "...";
+    }
+    return question;
+  }
+  console.log(data)
   return (
     <div
       id="questions"
-      className="border-b-4 mb-5 sm:border-b-0 sm:border-r-4 border-d_orange pr-2"
+      className="border-b-4 mb-5 sm:border-b-0 sm:border-r-4 border-d_orange pr-2 sm:max-h-[75vh] overflow-y-auto"
     >
       {/* Questions */}
-      {data.map((question: QuestionData, index: number) => (
+      {data.sort((a: QuestionData, b: QuestionData) => a._id - b._id).map((question: QuestionData, index: number) => (
         <button
           // Button for each question
           className={clsx(
@@ -37,7 +44,7 @@ export default function QuestionSidebar({
             setCurrentQuestionIndex(index);
           }}
         >
-          {question.question}
+          {shortenQuestion(question.question)}
         </button>
       ))}
       {/* Button to add a question */}

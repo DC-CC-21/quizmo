@@ -22,6 +22,7 @@ function SelectRandomQuestion(
   if (!quizData) {
     return;
   }
+  console.log("Selecting Question", quizData)
 
   // Select a random index from the length of questions array
   const randomIndex = Math.floor(
@@ -115,7 +116,7 @@ function MultipleChoiceView(
             key={option}
             className={`${bg} p-5 mx-auto w-[80%] text-lg rounded-lg my-2 break-words text-left`}
           >
-            {sanitizedOption}
+            {option} {/*sanitizedOption*/}
           </button>
         );
       })}
@@ -141,7 +142,7 @@ export default function QuizPage(): JSX.Element {
   const params = useSearchParams();
   const [errors, setErrors] = useState<string[]>([]);
   const quizzes_id = params.get("id");
-  const count = params.get("count")
+  const count = params.get("count");
   if (!quizzes_id || !count) {
     throw new Error("Invalid query parameter 'q'");
   }
@@ -163,20 +164,20 @@ export default function QuizPage(): JSX.Element {
           setErrors(["No questions found for this quiz"]);
           return;
         }
-        
+
         const questionCount = +params.get("count")!;
         let questions = shuffleArray(data).slice(
           0,
           questionCount
         ) as QuestionData[];
-        
+
         const question = SelectRandomQuestion(
           questions,
           setQuizData
         );
-        
+
         if (question) {
-          console.log(questions)
+          console.log(questions);
           setQuestion(question);
         }
       } catch (error: any) {
@@ -194,7 +195,7 @@ export default function QuizPage(): JSX.Element {
 
   // If the quiz data is not loaded, show a loading message
   if (!quizData) return <div>Loading...</div>;
-  if(!quizData.length) return <div>No Questions</div>
+  if (quizData.length === 0 && !question) return <div>No Questions</div>;
   /**
    * Handles the click event on the "Next" button.
    * Updates the state variables and navigates to the finished page if the quiz is finished.

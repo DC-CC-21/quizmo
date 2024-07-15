@@ -50,6 +50,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       return NextResponse.json({
         rows: rows,
         quizName: quizRows[0].quiz_name,
+        public: quizRows[0].public,
       });
     }
   } catch (error) {

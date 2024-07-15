@@ -22,15 +22,27 @@ export default async function Home(): Promise<JSX.Element> {
       )}
     >
       {/* Map over the quizzes and render a QuizCard for each */}
-      {data.sort((a, b) => a.quiz_name.localeCompare(b.quiz_name)).map((quizElement: QuizData) => (
-        <QuizCard
-          // Set a unique key for each QuizCard
-          key={quizElement.quiz_name}
-          // Pass the quiz data to the QuizCard component
-          quizData={quizElement}
-        />
-      ))}
+      {data
+        .sort((a, b) => a.quiz_name.localeCompare(b.quiz_name))
+        .map((quizElement: QuizData) => (
+          <QuizCard
+            // Set a unique key for each QuizCard
+            key={quizElement.quiz_name}
+            // Pass the quiz data to the QuizCard component
+            quizData={quizElement}
+          />
+        ))}
+      {/* <svg className="w-full h-[6em]">
+        <rect
+          x="2"
+          y="2"
+          width="100%"
+          height="100"
+          className={`fill-red-500 text-white svgtest`}
+        >
+        </rect>
+          HI
+      </svg> */}
     </main>
   );
 }
-

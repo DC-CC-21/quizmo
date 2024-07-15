@@ -12,6 +12,7 @@ export interface QuestionData {
   quizzes_id: string;
   options: string[]
   isNew?: boolean
+  _id:number
 }
 
 

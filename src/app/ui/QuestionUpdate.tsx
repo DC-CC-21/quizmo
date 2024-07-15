@@ -1,5 +1,8 @@
 import { Dispatch, MouseEventHandler, useState } from "react";
 import QuizData, { QuestionData } from "../lib/QuizData";
+import VerticalSlideButton from "./VerticalSlideButton";
+import DataListTextArea from "./DataListTextArea";
+import SlideButton from "./SlideButton";
 
 /**
  * Component to update the question data.
@@ -73,7 +76,7 @@ export default function QuestionUpdate({
 
     // Get all the list option input elements
     let listOptionElements = Array.from(
-      document.querySelectorAll(".listOption input")
+      document.querySelectorAll(".listOption textarea")
     );
 
     // Get the values of all the list option input elements
@@ -88,7 +91,7 @@ export default function QuestionUpdate({
 
     // Update the data state
     setData(questionData);
-    setChanges(0)
+    setChanges(0);
   }
 
   /**
@@ -108,7 +111,8 @@ export default function QuestionUpdate({
       // If the input value is the same as the original value, decrease the changes count
       if (element.value == originalValue) {
         setChanges(changes - 1);
-      } else { // Otherwise, increase the changes count
+      } else {
+        // Otherwise, increase the changes count
         setChanges(changes + 1);
       }
 
@@ -120,7 +124,15 @@ export default function QuestionUpdate({
   // Get the current question and all the options
   const currentQuestion = data[currentQuestionIndex];
   let allOptions: Array<string> = [];
+  const quizTypeOptions = [
+    "Multiple Choice",
+    "Fill in the Blank",
+    "Both",
+  ];
+
+  // State variables
   const [changes, setChanges] = useState<number>(0);
+
   data.forEach((question: QuestionData) => {
     allOptions.push(...question.options);
   });
@@ -192,25 +204,46 @@ export default function QuestionUpdate({
                 key={index}
                 className="listOption bg-white border-d_blue grid grid-cols-[1fr,50px] gap-2 p-2 rounded-md m-2"
               >
-                <label htmlFor={option}>
-                  <input
+                {/* <label htmlFor={option}> */}
+                {/* <input
                     key={currentQuestion.questions_id}
                     list={"allOptions"}
                     name={option}
                     id={option}
                     defaultValue={option}
                     aria-label="Question"
-                    className="w-full"
-                  />
-                </label>
+                    className="w-full h-full text-wrap"
+                  /> */}
+                {/* </label> */}
+                <DataListTextArea
+                  dataList={allOptions}
+                  className="w-full h-full"
+                  value={option}
+                />
 
+                {/* <VerticalSlideButton
+                  btnNames={quizTypeOptions}
+                  className="hidden sm:block"
+                />
+                <SlideButton btnNames={quizTypeOptions} defaultValue={} */}
                 <button
                   type="button"
                   onClick={() => {
                     OptionHandler("Delete", index);
                   }}
+                  className={`mx-auto my-0 w-full h-[50px] 
+                    relative hover:text-white
+                    [&>div]:hover:w-2/3  [&>div]:hover:h-2/3`}
                 >
-                  X
+                  <div
+                    className={`absolute left-1/2 top-1/2 
+                    translate-x-[-50%] translate-y-[-50%]
+                    w-0 h-0 bg-red-600 rounded-full z-0
+                    transition-all duration-200`}
+                  ></div>
+                  <span className=" transition-all duration-300 z-0 relative block">
+                    X
+                  </span>
                 </button>
               </li>
             );
@@ -223,7 +256,7 @@ export default function QuestionUpdate({
         type="button"
         className="overflow-visible relative hover:bg-blue-500 col-span-2 m-2 rounded-full bg-l_blue text-white text-center p-2 w-2/3 mx-auto block"
       >
-        {changes!==0  && (
+        {changes !== 0 && (
           <>
             <div className="animate-[ping_1.5s_ease-in-out_infinite] absolute right-0 top-0 rounded-full bg-lime-300 border-[1px] border-sky-400 w-[20px] h-[20px]"></div>
             <div className="absolute right-0 top-0 rounded-full bg-lime-300 border-[1px] border-sky-400 w-[20px] h-[20px] text-sm text-black">

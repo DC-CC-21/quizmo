@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import QuizData from "../lib/QuizData";
+import Link from "next/link";
+import SlideButton from "../ui/SlideButton";
 
 /**
  * Component for displaying a quiz and enabling the user to select the number of questions to play.
@@ -10,7 +12,7 @@ import QuizData from "../lib/QuizData";
  */
 export default function QuizPage(): JSX.Element {
   // State variables for the number of questions and the quiz data
-  const [questionCount, setQuestionCount] = useState(5);
+  const [questionCount, setQuestionCount] = useState("5");
   const params = useSearchParams()
   const [quiz, setQuiz] = useState<QuizData | null>(null);
   const quizzes_id = params.get("id")
@@ -42,7 +44,7 @@ export default function QuizPage(): JSX.Element {
         >
           <h3 className="text-xl text-center w-full sm:col-span-2">Questions</h3>
           {/* Radio buttons to select the number of questions */}
-          <label htmlFor="5question">
+          {/* <label htmlFor="5question">
             5 Questions:
             <input
               type="radio"
@@ -78,16 +80,17 @@ export default function QuizPage(): JSX.Element {
               id="Aquestion"
               onClick={() => setQuestionCount(-1)}
             />
-          </label>
+          </label> */}
+          <SlideButton btnNames={["5", "10", "15", "All"]} className="w-full col-span-2 [&>span]:bg-lime-400 [&>span]:border [&>span]:border-l_blue" maxRows={2} setValue={setQuestionCount}/>
         </div>
       </div>
       {/* Link to start the quiz */}
-      <a
+      <Link
         href={`/quiz/play?id=${quizzes_id}&count=${questionCount}`}
-        className="rounded:lg p-2 bg-lime-300 border-2 border-white block w-1/3 mx-auto text-center"
+        className="transition-all hover:rounded-md hover:w-full rounded:lg p-2 bg-lime-300 border-2 border-white block w-1/3 mx-auto text-center"
       >
         Play
-      </a>
+      </Link>
     </main>
   );
 }
