@@ -8,13 +8,12 @@ export interface QuestionData {
   questions_id: string;
   question: string;
   answer: string;
-  types: string,
+  types: string;
   quizzes_id: string;
-  options: string[]
-  isNew?: boolean
-  _id:number
+  options: string[];
+  isNew?: boolean;
+  _id: number;
 }
-
 
 /**
  * Interface representing a quiz in the database.
@@ -29,8 +28,7 @@ export default interface QuizData {
   // The ID of the user who created the quiz.
   users_id: string;
   // Whether the quiz is publicly accessible (0 for private, 1 for public).
-  public:number;
+  public: number;
   // The name of the quiz.
   quiz_name: string;
 }
-

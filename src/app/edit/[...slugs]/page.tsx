@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import QuizData, { QuestionData } from "@/app/lib/QuizData";
 import QuestionSidebar from "@/app/ui/QuestionSidebar";
 import QuestionUpdate from "@/app/ui/QuestionUpdate";
@@ -17,9 +17,7 @@ export default function QuizEditPage(): JSX.Element {
    * Adds a new question to the quiz data.
    * @returns {void}
    */
-  function AddQuestionHandler(
-    _: React.MouseEvent<HTMLButtonElement>
-  ): void {
+  function AddQuestionHandler(_: React.MouseEvent<HTMLButtonElement>): void {
     if (!data) {
       console.warn("Cannot add question to undefined quiz");
       return;
@@ -34,7 +32,7 @@ export default function QuizEditPage(): JSX.Element {
       answer: "Answer Here",
       types: "Both",
       isNew: true,
-      _id:999,
+      _id: 999,
     };
     setCurrentQuestionIndex(data.length);
     setData([...questionData, newQuestion]);
@@ -111,12 +109,11 @@ export default function QuizEditPage(): JSX.Element {
 
   // State variables for the quiz data, current question, and all options
   const [data, setData] = useState<QuestionData[]>();
-  const [currentQuestionIndex, setCurrentQuestionIndex] =
-    useState<number>(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [messages, setMessages] = useState<string[]>([]);
   const [quizName, setQuizName] = useState<string>("Loading...");
-  const [visibility, setVisibility] =
-    useState<string>("Private");
+  const [visibility, setVisibility] = useState<string>("Private");
+
   // Fetch the quiz data from the API and set the state variables
   useEffect(() => {
     loadData();
@@ -140,10 +137,7 @@ export default function QuizEditPage(): JSX.Element {
     <main className="flex flex-col sm:grid sm:grid-cols-[30%,1fr] gap-2 p-2">
       <Messages messages={messages} className="col-span-2" />
       {/* Quiz name */}
-      <label
-        className="text-center text-2xl p-2 col-span-2"
-        htmlFor="quizName"
-      >
+      <label className="text-center text-2xl p-2 col-span-2" htmlFor="quizName">
         Quiz Name:{" "}
         <input
           id="quizName"

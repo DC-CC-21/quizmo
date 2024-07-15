@@ -18,8 +18,7 @@ export default function SlideButton({
 }) {
   const [on, setOn] = useState(defaultValue || 0);
   const id = "SB" + btnNames.join("").replace(/[\(\)\ %]/g, "");
-  const columns =
-    btnNames.length <= maxRows ? btnNames.length : maxRows;
+  const columns = btnNames.length <= maxRows ? btnNames.length : maxRows;
   const spanWidth = 100 / columns;
 
   let rows = btnNames.length % maxRows;
@@ -49,12 +48,14 @@ export default function SlideButton({
       <div
         id={id}
         className={clsx(
-          `gap-5 rounded-xl slideButton grid relative min-h-[50px] border-2 border-sky-700 min-w-1/2 my-2 p-2`,
-          className
+          "gap-5 rounded-xl slideButton grid relative min-h-[50px] border-2 border-sky-700 min-w-1/2 my-2 p-2",
+          className,
         )}
       >
         <span
-          className={`transition-all duration-200 select-none absolute bg-lime-300 rounded-lg`}
+          className={
+            "transition-all duration-200 select-none absolute bg-lime-300 rounded-lg"
+          }
         />
         {btnNames.map((name, index) => {
           return (

@@ -4,16 +4,15 @@ const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       screens: {
-        sm: "500px"
+        sm: "500px",
       },
       backgroundImage: {
-        "gradient-radial":
-          "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
@@ -32,12 +31,12 @@ const config: Config = {
         breathe: {
           "0%, 100%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.1)" },
-        }
+        },
       },
       animation: {
-        wiggle: 'wiggle 1s ease-in-out infinite',
-        breathe: 'breathe 1s ease-in-out infinite'
-      }
+        wiggle: "wiggle 1s ease-in-out infinite",
+        breathe: "breathe 1s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

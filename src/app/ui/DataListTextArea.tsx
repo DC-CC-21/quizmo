@@ -13,22 +13,16 @@ export default function DataListTextArea({
   function showListOptions() {
     setShowOptions(true);
   }
-  function typeText(
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) {
+  function typeText(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setText(event.target.value);
     let filteredOptions = dataList.filter((option) => {
-      return option
-        .toLowerCase()
-        .includes(event.target.value.toLowerCase());
+      return option.toLowerCase().includes(event.target.value.toLowerCase());
     });
     setOptions(filteredOptions);
   }
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [text, setText] = useState<string>(value);
-  const [options, setOptions] = useState<string[]>([
-    ...dataList,
-  ]);
+  const [options, setOptions] = useState<string[]>([...dataList]);
 
   let border = "rounded-md";
   if (showOptions) {
@@ -54,14 +48,15 @@ export default function DataListTextArea({
         w-full h-[100px] translate-y-[100%] bottom-0 left-0
         overflow-y-scroll border border-t-0 border-black rounded-b-md`}
         >
-          {options.map((option) => (
+          {options.map((option, index) => (
             <button
               onClick={() => {
                 setText(option);
                 setShowOptions(false);
               }}
+              key={index}
               type="button"
-              className={`hover:bg-lime-300 text-left p-1 w-full`}
+              className="hover:bg-lime-300 text-left p-1 w-full"
             >
               {option}
             </button>

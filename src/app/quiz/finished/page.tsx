@@ -15,8 +15,8 @@ export default function FinishedView() {
         Results
       </h2>
       <div className="text-center px-4 py-5">
-              <span className="text-3xl p-2 text-black">{name}</span>
-              <span className="text-4xl p-2 text-l_blue">{percentage}%</span>
+        <span className="text-3xl p-2 text-black">{name}</span>
+        <span className="text-4xl p-2 text-l_blue">{percentage}%</span>
       </div>
       <a
         href="/"

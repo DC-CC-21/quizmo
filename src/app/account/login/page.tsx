@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 export default function Login(): JSX.Element {
   // State for the error message
   const [error, setError] = useState<string[]>([]);
-  let router = useRouter()
+  let router = useRouter();
 
   /**
    * Handles the form submission by sending the login request
@@ -20,7 +20,9 @@ export default function Login(): JSX.Element {
    * @param {React.FormEvent<HTMLFormElement>} event The event object
    * @returns {Promise<void>} A promise that resolves when the request has finished
    */
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
     const username = event.currentTarget.username.value;
     const pwd = event.currentTarget.pwd.value;
@@ -38,7 +40,7 @@ export default function Login(): JSX.Element {
     }
     if (data.success) {
       setError([]);
-      router.refresh()
+      router.refresh();
     }
   };
   return (
@@ -50,7 +52,10 @@ export default function Login(): JSX.Element {
         {error.map((e) => {
           console.log(e);
           return (
-            <div className="p-2 m-2 border-2 rounded-md border-red-600 bg-red-200" key={e}>
+            <div
+              className="p-2 m-2 border-2 rounded-md border-red-600 bg-red-200"
+              key={e}
+            >
               {e}
             </div>
           );
@@ -74,7 +79,7 @@ export default function Login(): JSX.Element {
         </label>
         <label htmlFor="pwd">
           Password
-          <input type="password" name="pwd" id="pwd" required/>
+          <input type="password" name="pwd" id="pwd" required />
         </label>
         <button
           type="submit"
@@ -92,4 +97,3 @@ export default function Login(): JSX.Element {
     </main>
   );
 }
-

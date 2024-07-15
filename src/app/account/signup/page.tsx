@@ -21,13 +21,12 @@ export default function Signup(): JSX.Element {
    * @returns {Promise<void>} A promise that resolves when the request has finished
    */
   const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
+    event: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault();
     const username = event.currentTarget.username.value;
     const user_email = event.currentTarget.user_email.value;
-    const user_password =
-      event.currentTarget.user_password.value;
+    const user_password = event.currentTarget.user_password.value;
     const response = await fetch("/api/account/register", {
       method: "POST",
       headers: {
@@ -85,11 +84,7 @@ export default function Signup(): JSX.Element {
         </label>
         <label htmlFor="user_email">
           Email:
-          <input
-            type="email"
-            name="user_email"
-            id="user_email"
-          />
+          <input type="email" name="user_email" id="user_email" />
         </label>
 
         <label htmlFor="user_password">
@@ -109,10 +104,7 @@ export default function Signup(): JSX.Element {
         </button>
         <div className="text-center p-1 mt-2 bg-blue-100 rounded-lg">
           Already have an account?{" "}
-          <a
-            href="/account/login"
-            className="underline-slide text-d_orange"
-          >
+          <a href="/account/login" className="underline-slide text-d_orange">
             Login
           </a>
         </div>

@@ -14,28 +14,22 @@ import DOMPurify from "dompurify";
  */
 function SelectRandomQuestion(
   quizData: QuestionData[],
-  setQuizData: React.Dispatch<
-    React.SetStateAction<QuestionData[] | null>
-  >
+  setQuizData: React.Dispatch<React.SetStateAction<QuestionData[] | null>>,
 ): QuestionData | undefined {
   // Check if quiz data exists and has questions
   if (!quizData) {
     return;
   }
-  console.log("Selecting Question", quizData)
+  console.log("Selecting Question", quizData);
 
   // Select a random index from the length of questions array
-  const randomIndex = Math.floor(
-    Math.random() * quizData.length
-  );
+  const randomIndex = Math.floor(Math.random() * quizData.length);
 
   // Get the question at the selected index
   const question = quizData[randomIndex];
 
   // Create a new quiz data object by filtering out the selected question
-  const updatedQuizData = quizData.filter(
-    (_, index) => index !== randomIndex
-  );
+  const updatedQuizData = quizData.filter((_, index) => index !== randomIndex);
 
   // Update the quiz data
   setQuizData(updatedQuizData);
@@ -63,7 +57,7 @@ function MultipleChoiceView(
   options: string[],
   setOptions: React.Dispatch<React.SetStateAction<string[]>>,
   correct: boolean[],
-  setCorrect: React.Dispatch<React.SetStateAction<boolean[]>>
+  setCorrect: React.Dispatch<React.SetStateAction<boolean[]>>,
 ): JSX.Element {
   // Render a message if no question is available
   if (!question) {
@@ -76,7 +70,7 @@ function MultipleChoiceView(
       shuffleArray([
         ...shuffleArray(question.options).slice(0, 3),
         question.answer,
-      ])
+      ]),
     );
   }
 
@@ -130,12 +124,8 @@ function MultipleChoiceView(
  */
 export default function QuizPage(): JSX.Element {
   // State variables for the quiz data, current question, and user selections
-  const [quizData, setQuizData] = useState<
-    QuestionData[] | null
-  >(null);
-  const [question, setQuestion] = useState<QuestionData | null>(
-    null
-  );
+  const [quizData, setQuizData] = useState<QuestionData[] | null>(null);
+  const [question, setQuestion] = useState<QuestionData | null>(null);
   const [selected, setSelected] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
   const [correct, setCorrect] = useState<boolean[]>([]);
@@ -154,7 +144,7 @@ export default function QuizPage(): JSX.Element {
     async function load() {
       try {
         const response = await fetch(
-          `/api/questionsById?quizzes_id=${quizzes_id}`
+          `/api/questionsById?quizzes_id=${quizzes_id}`,
         );
         if (!response.ok) {
           throw new Error("Failed to fetch quiz data");
@@ -168,13 +158,10 @@ export default function QuizPage(): JSX.Element {
         const questionCount = +params.get("count")!;
         let questions = shuffleArray(data).slice(
           0,
-          questionCount
+          questionCount,
         ) as QuestionData[];
 
-        const question = SelectRandomQuestion(
-          questions,
-          setQuizData
-        );
+        const question = SelectRandomQuestion(questions, setQuizData);
 
         if (question) {
           console.log(questions);
@@ -186,7 +173,7 @@ export default function QuizPage(): JSX.Element {
       }
     }
     load();
-  }, [quizzes_id, count]);
+  }, [quizzes_id, count, params]);
 
   // If there are errors, show them
   if (errors.length > 0) {
@@ -202,10 +189,7 @@ export default function QuizPage(): JSX.Element {
    */
   const handleNextClick = () => {
     if (selected !== "") {
-      const question = SelectRandomQuestion(
-        quizData,
-        setQuizData
-      );
+      const question = SelectRandomQuestion(quizData, setQuizData);
       if (question) {
         setSelected("");
         setOptions([]);
@@ -214,7 +198,7 @@ export default function QuizPage(): JSX.Element {
         console.log("finished");
         const correctCount = correct.filter((x) => x).length;
         window.location.assign(
-          `/quiz/finished?id=${quizzes_id}}&count=${correct.length}&correct=${correctCount}`
+          `/quiz/finished?id=${quizzes_id}}&count=${correct.length}&correct=${correctCount}`,
         );
       }
     }
@@ -227,14 +211,9 @@ export default function QuizPage(): JSX.Element {
   return (
     <main className="flex flex-col w-[80%] max-w-[800px] border-d_blue border-2 rounded-lg mx-auto my-2 overflow-hidden">
       <div className="h-[20px] w-full bg-black">
-        <div
-          id="progressBar"
-          className={"h-full bg-blue-400"}
-        ></div>
+        <div id="progressBar" className={"h-full bg-blue-400"}></div>
       </div>
-      <h2 className="text-2xl text-center p-2 m-2">
-        {question!.question}
-      </h2>
+      <h2 className="text-2xl text-center p-2 m-2">{question!.question}</h2>
       {/* Render the multiple choice view */}
       {MultipleChoiceView(
         question,
@@ -243,7 +222,7 @@ export default function QuizPage(): JSX.Element {
         options,
         setOptions,
         correct,
-        setCorrect
+        setCorrect,
       )}
       <button
         className={`rounded-md bg-blue-400 p-2 text-md w-[30%] mx-[68%] my-[2%] ${hover}`}

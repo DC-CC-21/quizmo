@@ -68,33 +68,31 @@ form input {
   padding: 0.25em;
 }
 
-
 .addBtn:hover .addBtn-add,
 .addBtn:hover .addBtn-bg {
-  opacity:1;
+  opacity: 1;
 }
 .addBtn:hover .addBtn-text {
-  opacity:0;
+  opacity: 0;
 }
 
 .addBtn-text {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* .slideButton span { */
-  /* transition: left 200ms, top 200ms; */
-  /* z-index:0; */
-  /* background-color:hsl(210, 100%, 76%); */
-  /* background-image:radial-gradient(ellipse at 38%, #1379ff 45%, #fff 55%, #fff 60%, hsl(200, 100%, 73%) 70%); */
-  /* background-size: 250% 180%`; */
+/* transition: left 200ms, top 200ms; */
+/* z-index:0; */
+/* background-color:hsl(210, 100%, 76%); */
+/* background-image:radial-gradient(ellipse at 38%, #1379ff 45%, #fff 55%, #fff 60%, hsl(200, 100%, 73%) 70%); */
+/* background-size: 250% 180%`; */
 /* } */
 .slideButton button {
   z-index: 1;
 }
-
 
 /* .svgtest{
   stroke-dasharray: 100 300;

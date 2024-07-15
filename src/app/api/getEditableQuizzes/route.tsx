@@ -15,8 +15,7 @@ export async function GET() {
     }
 
     // Query the database for all quizzes that are editable by the current user
-    const { rows } =
-      await sql`SELECT * FROM quiz WHERE users_id=${user_id}`;
+    const { rows } = await sql`SELECT * FROM quiz WHERE users_id=${user_id}`;
     if (!rows) {
       // If the query returns no rows, return an empty array
       return NextResponse.json({ rows: [] });
@@ -29,7 +28,7 @@ export async function GET() {
     console.error(error);
     return NextResponse.json(
       { error: "Error fetching editable quizzes" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -43,7 +43,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
           // Merge the question and its options into a single object
           let result = { ...row, options: options };
           return result;
-        })
+        }),
       );
 
       // Return the questions and their options as a JSON response
@@ -63,4 +63,3 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     });
   }
 }
-

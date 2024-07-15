@@ -23,18 +23,15 @@ const quiz = {
       answer: "Hyper Text Markup Language",
     },
     {
-      question:
-        "Choose the correct HTML element for the largest heading",
+      question: "Choose the correct HTML element for the largest heading",
       answer: "&lt;h1&gt;",
     },
     {
-      question:
-        "What is the correct HTML element for inserting a line break?",
+      question: "What is the correct HTML element for inserting a line break?",
       answer: "&lt;br&gt;",
     },
     {
-      question:
-        "What is the correct HTML element to define emphasized text?",
+      question: "What is the correct HTML element to define emphasized text?",
       answer: "&lt;em&gt;",
     },
     {
@@ -64,8 +61,7 @@ const quiz = {
       answer: "In the &lt;head&gt; section",
     },
     {
-      question:
-        "Which HTML tag is used to define an internal style sheet?",
+      question: "Which HTML tag is used to define an internal style sheet?",
       answer: "&lt;style&gt;",
     },
     {
@@ -75,19 +71,16 @@ const quiz = {
   ],
   Javascript: [
     {
-      question:
-        "Inside which HTML element do we put the Javascript?",
+      question: "Inside which HTML element do we put the Javascript?",
       answer: "&lt;script&gt;",
     },
     {
       question:
         "What is the correct Javascript syntax to change the content of the HTML element below? <br> &lt;p id='demo'&gt;Change Me!&lt;/p&gt;",
-      answer:
-        "document.getElementById('demo').innerHTML = 'Hello World'",
+      answer: "document.getElementById('demo').innerHTML = 'Hello World'",
     },
     {
-      question:
-        "Where is the correct place to insert a Javascript?",
+      question: "Where is the correct place to insert a Javascript?",
       answer: "In the &lt;head&gt; or &lt;body&gt; section",
     },
     {
@@ -100,8 +93,7 @@ const quiz = {
       ],
     },
     {
-      question:
-        "How do you write 'Hello World' in an alert box?",
+      question: "How do you write 'Hello World' in an alert box?",
       answer: "alert('Hello World')",
       options: ["msg('Hello World'", "alertBox('Hello World')"],
     },
@@ -114,8 +106,7 @@ const ids = {
   Javascript: "b8a5ec3d-fd27-4b50-8413-dce803363d65",
 };
 const q_id = {
-  "What does HTML stand for?":
-    "c49ca31a-4598-4193-959f-8147cfd83ee2",
+  "What does HTML stand for?": "c49ca31a-4598-4193-959f-8147cfd83ee2",
   "Extra question": "5264c294-dfe1-4ab8-8335-872882b49655",
   "What is the correct HTML element for inserting a line break?":
     "54894a62-2760-4a69-be93-d47e42ae3ef5",
@@ -139,8 +130,7 @@ const q_id = {
     "c6729910-1b77-4833-9143-9cda15cef7b4",
   "How do you insert a comment in a CSS file?":
     "18a492d1-37d1-49c1-925c-0bf8a1b1e98f",
-  "What does CSS stand for?":
-    "ca956ab0-626e-4fac-b566-f32addc3613c",
+  "What does CSS stand for?": "ca956ab0-626e-4fac-b566-f32addc3613c",
   "Where in an HTML document is the correct place to refer to an external style sheet?":
     "e8e693b3-4913-4438-8d93-35cd5737af8d",
   "Which HTML tag is used to define an internal style sheet?":

@@ -2,12 +2,8 @@ import { cookies } from "next/headers";
 import AccountData from "./AccountInterface";
 import { EncryptData } from "./SecureCookie";
 
-export default async function SetUserCookie(
-  userData: AccountData
-) {
-  const threeMonths = new Date(
-    Date.now() + 60 * 60 * 1000 * 24 * 90
-  );
+export default async function SetUserCookie(userData: AccountData) {
+  const threeMonths = new Date(Date.now() + 60 * 60 * 1000 * 24 * 90);
   const cookieConfig = {
     expires: threeMonths,
   };
@@ -20,10 +16,6 @@ export default async function SetUserCookie(
 
   const secureCookie = await EncryptData(data);
 
-  cookies().set(
-    "quiz_token",
-    secureCookie.jwtToken,
-    cookieConfig
-  );
+  cookies().set("quiz_token", secureCookie.jwtToken, cookieConfig);
   cookies().set("quiz_secure", secureCookie.iv, cookieConfig);
 }

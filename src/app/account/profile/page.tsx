@@ -3,11 +3,11 @@
 import Messages from "@/app/ui/Messages";
 import { useState } from "react";
 
-export default function () {
+export default function ProfilePage() {
   async function LogoutHandler(
-    _: React.MouseEvent<HTMLButtonElement>
+    _: React.MouseEvent<HTMLButtonElement>,
   ): Promise<void> {
-    let response = await fetch(`/api/account/logout`);
+    let response = await fetch("/api/account/logout");
     if (response.ok) {
       window.location.href = "/";
     } else {
@@ -30,11 +30,7 @@ export default function () {
           </label>
           <label htmlFor="user_email">
             Email:
-            <input
-              type="email"
-              name="user_email"
-              id="user_email"
-            />
+            <input type="email" name="user_email" id="user_email" />
           </label>
           <button
             type="submit"

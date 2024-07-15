@@ -10,7 +10,7 @@ export const EncryptData = async (data: AccountData) => {
       length: 256,
     },
     true,
-    ["encrypt", "decrypt"]
+    ["encrypt", "decrypt"],
   );
   const jwtToken = await crypto.subtle.encrypt(
     {
@@ -18,7 +18,7 @@ export const EncryptData = async (data: AccountData) => {
       iv: iv,
     },
     secretKey,
-    new TextEncoder().encode(JSON.stringify(data))
+    new TextEncoder().encode(JSON.stringify(data)),
   );
 
   return {
@@ -27,10 +27,7 @@ export const EncryptData = async (data: AccountData) => {
   };
 };
 
-export const DecryptData = async (
-  jwtToken: string,
-  iv: string
-) => {
+export const DecryptData = async (jwtToken: string, iv: string) => {
   const secretKey = await crypto.subtle.importKey(
     "raw",
     Buffer.from(process.env.JWT_SECRET as string, "base64"),
@@ -39,7 +36,7 @@ export const DecryptData = async (
       length: 256,
     },
     true,
-    ["encrypt", "decrypt"]
+    ["encrypt", "decrypt"],
   );
 
   const data = await crypto.subtle.decrypt(
@@ -48,7 +45,7 @@ export const DecryptData = async (
       iv: Buffer.from(iv, "base64"),
     },
     secretKey,
-    Buffer.from(jwtToken, "base64")
+    Buffer.from(jwtToken, "base64"),
   );
 
   return JSON.parse(new TextDecoder().decode(data));

@@ -13,12 +13,13 @@ import GetUserCookie from "./GetUserCookie";
 export default async function GetAvailableQuizzes(): Promise<QuizData[]> {
   try {
     // Connect to the database
-    const user_id = (await GetUserCookie())?.users_id
-    const { rows } = await sql`SELECT * FROM quiz WHERE public=1 OR users_id=${user_id}`
-    if(!rows) {
+    const user_id = (await GetUserCookie())?.users_id;
+    const { rows } =
+      await sql`SELECT * FROM quiz WHERE public=1 OR users_id=${user_id}`;
+    if (!rows) {
       return [];
     } else {
-      return (rows as QuizData[]);
+      return rows as QuizData[];
     }
   } catch (error) {
     // If an error occurs, log it and return an empty array

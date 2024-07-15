@@ -192,7 +192,7 @@ async function seedOptions() {
 export async function GET() {
   // return createQuizTable();
   // return createQuestionsTable()
-  return createOptionsTable()
+  return createOptionsTable();
   // return createTables();
   // return await seedAccounts()
   // return await seedQuizzes();

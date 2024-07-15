@@ -8,9 +8,8 @@ type QuizCardProps = {
   quizData: QuizData;
   editMode?: boolean;
   deleteQuizHandler?: any;
-  removeQuizHandler?: (event:any) => Promise<void>;
+  removeQuizHandler?: (event: any) => Promise<void>;
 };
-
 
 /**
  * Component for displaying a quiz card.
@@ -29,8 +28,7 @@ export default function QuizCard({
   let editClasses = "";
   if (editMode) {
     path = `/edit/${quizData.quizzes_id}`;
-    editClasses =
-      "[&>div]:hover:border-b-red-600 [&_button]:hover:w-[40px]";
+    editClasses = "[&>div]:hover:border-b-red-600 [&_button]:hover:w-[40px]";
   }
   const [questionCount, setQuestionCount] = useState<number>(0);
 
@@ -38,7 +36,7 @@ export default function QuizCard({
   useEffect(() => {
     (async () => {
       let res = await fetch(
-        `/api/countQuestionsById?quizzes_id=${quizData.quizzes_id}`
+        `/api/countQuestionsById?quizzes_id=${quizData.quizzes_id}`,
       );
       let count = (await res.json()).count;
       setQuestionCount(count);
@@ -68,9 +66,7 @@ export default function QuizCard({
         )}
       </div>
       {/* Display the number of questions in the quiz */}
-      <p className="p-2 text-right">
-        Questions: {questionCount}
-      </p>
+      <p className="p-2 text-right">Questions: {questionCount}</p>
     </Link>
   );
 }

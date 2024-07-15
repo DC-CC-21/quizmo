@@ -20,4 +20,3 @@ export default async function GetUserCookie(): Promise<null | AccountData> {
     return await DecryptData(jwtToken.value, iv.value);
   }
 }
-

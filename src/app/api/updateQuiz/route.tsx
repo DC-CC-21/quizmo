@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
   console.log(quizzes_id);
-  console.log(body)
+  console.log(body);
 
   // Check if the quiz ID is valid
   if (!quizzes_id || !isValidUUID(quizzes_id)) {

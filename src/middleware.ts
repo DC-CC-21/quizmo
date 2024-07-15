@@ -15,24 +15,20 @@ export async function middleware(req: NextRequest) {
     }
   } else if (path.startsWith("/account/profile")) {
     if (!userToken?.loggedIn) {
-      return NextResponse.redirect(
-        new URL("/account/login", req.url)
-      );
+      return NextResponse.redirect(new URL("/account/login", req.url));
     } else {
       const params = req.nextUrl.searchParams;
       const users_id = params.get("id");
       const userData = (await GetUserCookie()) as AccountData;
       if (userData.users_id !== users_id) {
         return NextResponse.redirect(
-          new URL("/api/account/logout?invalid=true", req.url)
+          new URL("/api/account/logout?invalid=true", req.url),
         );
       }
     }
   } else if (path.startsWith("/quiz/play")) {
     if (!userToken?.loggedIn) {
-      return NextResponse.redirect(
-        new URL("/quiz/no-auth", req.url)
-      );
+      return NextResponse.redirect(new URL("/quiz/no-auth", req.url));
     }
   }
 }

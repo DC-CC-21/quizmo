@@ -8,9 +8,7 @@ const bcrypt = require("bcrypt");
 // Define the shape of the user object
 const User = z.object({
   username: z.string().min(1, "Username is required"),
-  pwd: z
-    .string()
-    .min(6, "Password must be at least 8 characters"),
+  pwd: z.string().min(6, "Password must be at least 8 characters"),
 });
 
 /**
@@ -34,7 +32,7 @@ export async function POST(req: NextRequest) {
     if (result.rows.length > 0) {
       const match = await bcrypt.compare(
         body.pwd,
-        result.rows[0].user_password
+        result.rows[0].user_password,
       );
       if (match) {
         await SetUserCookie(result.rows[0] as AccountData);

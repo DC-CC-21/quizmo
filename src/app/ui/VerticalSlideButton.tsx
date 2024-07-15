@@ -48,12 +48,14 @@ export default function VerticalSlideButton({
       <div
         id={id}
         className={clsx(
-          `gap-5 rounded-xl slideButton grid relative min-h-[50px] border-2 border-sky-700 min-w-1/2 my-2 p-2`,
-          className
+          "gap-5 rounded-xl slideButton grid relative min-h-[50px] border-2 border-sky-700 min-w-1/2 my-2 p-2",
+          className,
         )}
       >
         <span
-          className={`transition-all duration-200 select-none absolute bg-lime-300 rounded-xl`}
+          className={
+            "transition-all duration-200 select-none absolute bg-lime-300 rounded-xl"
+          }
         />
         {btnNames.map((name, index) => {
           return (

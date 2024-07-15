@@ -13,18 +13,18 @@ import SlideButton from "../ui/SlideButton";
 export default function QuizPage(): JSX.Element {
   // State variables for the number of questions and the quiz data
   const [questionCount, setQuestionCount] = useState("5");
-  const params = useSearchParams()
+  const params = useSearchParams();
   const [quiz, setQuiz] = useState<QuizData | null>(null);
-  const quizzes_id = params.get("id")
+  const quizzes_id = params.get("id");
   // Fetch the quiz data when the component mounts or when the quizzes_id parameter changes
   useEffect(() => {
     async function load() {
       fetch(`/api/quizById?quizzes_id=${quizzes_id}`)
-        .then(res => res.json())
-      .then(data => setQuiz(data))
+        .then((res) => res.json())
+        .then((data) => setQuiz(data));
     }
-    load()
-  }, [quizzes_id])
+    load();
+  }, [quizzes_id]);
 
   // Display a loading message if the quiz data is not yet available
   if (!quiz) return <div>Loading...</div>;
@@ -42,7 +42,9 @@ export default function QuizPage(): JSX.Element {
           id="questionCount"
           className="flex flex-col justify-center items-center [&>label]:w-40 sm:grid sm:grid-cols-2 sm:w-[80%]  sm:mx-auto gap-2 p-2"
         >
-          <h3 className="text-xl text-center w-full sm:col-span-2">Questions</h3>
+          <h3 className="text-xl text-center w-full sm:col-span-2">
+            Questions
+          </h3>
           {/* Radio buttons to select the number of questions */}
           {/* <label htmlFor="5question">
             5 Questions:
@@ -81,7 +83,12 @@ export default function QuizPage(): JSX.Element {
               onClick={() => setQuestionCount(-1)}
             />
           </label> */}
-          <SlideButton btnNames={["5", "10", "15", "All"]} className="w-full col-span-2 [&>span]:bg-lime-400 [&>span]:border [&>span]:border-l_blue" maxRows={2} setValue={setQuestionCount}/>
+          <SlideButton
+            btnNames={["5", "10", "15", "All"]}
+            className="w-full col-span-2 [&>span]:bg-lime-400 [&>span]:border [&>span]:border-l_blue"
+            maxRows={2}
+            setValue={setQuestionCount}
+          />
         </div>
       </div>
       {/* Link to start the quiz */}
@@ -94,4 +101,3 @@ export default function QuizPage(): JSX.Element {
     </main>
   );
 }
-

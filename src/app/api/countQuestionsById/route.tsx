@@ -7,9 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @param {string} quizzes_id - The ID of the quiz to count questions for.
  * @return {Promise<number>} A promise that resolves to the number of questions in the quiz.
  */
-export async function GET(
-  req: NextRequest
-): Promise<NextResponse> {
+export async function GET(req: NextRequest): Promise<NextResponse> {
   const params = req.nextUrl.searchParams;
   const quizzes_id = params.get("quizzes_id");
   try {

@@ -32,12 +32,9 @@ export default function QuizEditHome() {
       setMessages([...messages, "Failed to delete quiz"]);
       return;
     }
-    let res = await fetch(
-      `/api/deleteQuiz?quizzes_id=${data_id}`,
-      {
-        method: "POST",
-      }
-    );
+    let res = await fetch(`/api/deleteQuiz?quizzes_id=${data_id}`, {
+      method: "POST",
+    });
     if (!res.ok) {
       setMessages([...messages, "Failed to delete quiz"]);
     } else {
@@ -72,13 +69,10 @@ export default function QuizEditHome() {
         "grid grid-cols-1",
         "sm:grid-cols-2",
         "md:grid-cols-3",
-        "p-2 gap-2"
+        "p-2 gap-2",
       )}
     >
-      <Messages
-        messages={messages}
-        className="sm:col-span-2 md:col-span-3"
-      />
+      <Messages messages={messages} className="sm:col-span-2 md:col-span-3" />
       {data.map((quizElement: QuizData, index) => (
         // Render each quiz card component
         <QuizCard

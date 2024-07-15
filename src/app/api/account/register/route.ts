@@ -9,9 +9,7 @@ const bcrypt = require("bcrypt");
 const User = z.object({
   username: z.string().min(1, "Username is required"),
   user_email: z.string().email("Invalid email"),
-  user_password: z
-    .string()
-    .min(8, "Password must be at least 8 characters"),
+  user_password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
 /**
@@ -39,15 +37,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Hash the password
-    const passwordHash = await bcrypt.hash(
-      body.user_password,
-      10
-    );
+    const passwordHash = await bcrypt.hash(body.user_password, 10);
 
     // Connect to the database
-    const result = await sql`INSERT INTO accounts (username, user_email, user_password)
+    const result =
+      await sql`INSERT INTO accounts (username, user_email, user_password)
        VALUES (${body.username}, ${body.user_email}, ${passwordHash})`;
-      
+
     if (result.rows.length > 0) {
       await SetUserCookie(result.rows[0] as AccountData);
       return NextResponse.json({ success: true });
