@@ -163,6 +163,7 @@ export default function QuizEditPage(): JSX.Element {
         currentQuestionIndex={currentQuestionIndex}
         AddQuestionHandler={AddQuestionHandler}
         setCurrentQuestionIndex={setCurrentQuestionIndex}
+        setData={setData}
       />
       <QuestionUpdate
         setData={setData}
