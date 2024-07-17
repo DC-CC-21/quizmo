@@ -10,9 +10,7 @@ import { sql } from "@vercel/postgres";
  * @param {NextRequest} req - The Next.js request object.
  * @returns {Promise<NextResponse>} The response object.
  */
-export async function middleware(
-  req: NextRequest
-): Promise<NextResponse> {
+export async function middleware(req: NextRequest): Promise<NextResponse> {
   // Get the current path
   let path = req.nextUrl.pathname;
   // Get the user's cookies
@@ -32,9 +30,7 @@ export async function middleware(
   else if (path.startsWith("/account/profile")) {
     // If the user is not authenticated, redirect them to the login page
     if (!userToken?.loggedIn) {
-      return NextResponse.redirect(
-        new URL("/account/login", req.url)
-      );
+      return NextResponse.redirect(new URL("/account/login", req.url));
     } else {
       // Get the user's ID from the URL parameters
       const params = req.nextUrl.searchParams;
@@ -44,7 +40,7 @@ export async function middleware(
       // Check if the user is trying to access someone else's profile
       if (userData.users_id !== users_id) {
         return NextResponse.redirect(
-          new URL("/api/account/logout?invalid=true", req.url)
+          new URL("/api/account/logout?invalid=true", req.url),
         );
       }
     }
@@ -53,18 +49,14 @@ export async function middleware(
   else if (path.startsWith("/quiz/play")) {
     // If the user is not authenticated, redirect them to a page indicating they are not authenticated
     if (!userToken?.loggedIn) {
-      return NextResponse.redirect(
-        new URL("/quiz/no-auth", req.url)
-      );
+      return NextResponse.redirect(new URL("/quiz/no-auth", req.url));
     }
   }
   // Check if the user is trying to access an edit page
   else if (path.startsWith("/edit/")) {
     if (!userToken?.loggedIn) {
       // If the user is not authenticated, redirect them to a page indicating they are not authenticated
-      return NextResponse.redirect(
-        new URL("/quiz/no-auth", req.url)
-      );
+      return NextResponse.redirect(new URL("/quiz/no-auth", req.url));
     } else {
       // Get the quiz ID from the URL
       const path = req.nextUrl.pathname.replace("/edit/", "");
@@ -73,15 +65,15 @@ export async function middleware(
         await sql`SELECT users_id FROM quiz WHERE quizzes_id = ${path} AND users_id = ${userToken.users_id}`;
       if (!result.rowCount) {
         // If the user is not allowed to edit the quiz, redirect them to a page indicating they are not authenticated
-        return NextResponse.redirect(
-          new URL("/quiz/no-auth", req.url)
-        );
+        return NextResponse.redirect(new URL("/quiz/no-auth", req.url));
       } else {
         // If the user is allowed to edit the quiz, allow them to continue to the edit page
         return NextResponse.next();
       }
     }
   }
+
+  return NextResponse.next();
 }
 
 /**

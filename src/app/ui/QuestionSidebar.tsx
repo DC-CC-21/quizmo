@@ -8,13 +8,13 @@ export default function QuestionSidebar({
   currentQuestionIndex,
   AddQuestionHandler,
   setCurrentQuestionIndex,
-  setData
+  setData,
 }: {
   data: QuestionData[];
   currentQuestionIndex: number;
   AddQuestionHandler: React.MouseEventHandler<HTMLButtonElement>;
-    setCurrentQuestionIndex: Dispatch<number>;
-  setData: Dispatch<SetStateAction<QuestionData[]|undefined>>
+  setCurrentQuestionIndex: Dispatch<number>;
+  setData: Dispatch<SetStateAction<QuestionData[] | undefined>>;
 }) {
   async function InputFromFile() {
     const fileInput = document.createElement("input");
@@ -45,15 +45,15 @@ export default function QuestionSidebar({
         return {
           quizzes_id: "",
           questions_id: "",
-          options: question.options||[],
-          question: question.question||"New Question",
-          answer: question.answer||"Answer Here",
+          options: question.options || [],
+          question: question.question || "New Question",
+          answer: question.answer || "Answer Here",
           types: "Both",
           isNew: true,
           _id: 999,
         } as QuestionData;
       });
-      console.log("Formatted json", formattedJSONData)
+      console.log("Formatted json", formattedJSONData);
       setData([...data, ...formattedJSONData]);
       setCurrentQuestionIndex(data.length);
     }
@@ -72,9 +72,7 @@ export default function QuestionSidebar({
     >
       {/* Questions */}
       {data
-        .sort(
-          (a: QuestionData, b: QuestionData) => a._id - b._id
-        )
+        .sort((a: QuestionData, b: QuestionData) => a._id - b._id)
         .map((question: QuestionData, index: number) => (
           <button
             // Button for each question
@@ -83,7 +81,7 @@ export default function QuestionSidebar({
               {
                 "border-4 border-blue-500 border-b-blue-700":
                   index === currentQuestionIndex,
-              }
+              },
             )}
             type="button"
             id={index.toString()}

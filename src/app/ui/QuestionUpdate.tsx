@@ -42,16 +42,11 @@ export default function QuestionUpdate({
     switch (type) {
       case "Add":
         // Add a new option to the current question
-        questionData[currentQuestionIndex].options.push(
-          "New Option"
-        );
+        questionData[currentQuestionIndex].options.push("New Option");
         break;
       case "Delete":
         // Delete an option from the current question at the specified index
-        questionData[currentQuestionIndex].options.splice(
-          index,
-          1
-        );
+        questionData[currentQuestionIndex].options.splice(index, 1);
         break;
     }
 
@@ -67,16 +62,12 @@ export default function QuestionUpdate({
     const questionData: QuestionData[] = [...(data || [])];
 
     // Get the name and answer input elements
-    const name = document.getElementById(
-      "name"
-    ) as HTMLInputElement;
-    const answer = document.getElementById(
-      "answer"
-    ) as HTMLInputElement;
+    const name = document.getElementById("name") as HTMLInputElement;
+    const answer = document.getElementById("answer") as HTMLInputElement;
 
     // Get all the list option input elements
     let listOptionElements = Array.from(
-      document.querySelectorAll(".listOption textarea")
+      document.querySelectorAll(".listOption textarea"),
     );
 
     // Get the values of all the list option input elements
@@ -124,11 +115,7 @@ export default function QuestionUpdate({
   // Get the current question and all the options
   const currentQuestion = data[currentQuestionIndex];
   let allOptions: Array<string> = [];
-  const quizTypeOptions = [
-    "Multiple Choice",
-    "Fill in the Blank",
-    "Both",
-  ];
+  const quizTypeOptions = ["Multiple Choice", "Fill in the Blank", "Both"];
 
   // State variables
   const [changes, setChanges] = useState<number>(0);
@@ -178,11 +165,7 @@ export default function QuestionUpdate({
       <div>
         <datalist id={"allOptions"}>
           {allOptions.map((listOption, index) => {
-            return (
-              <option key={`${listOption}-${index}`}>
-                {listOption}
-              </option>
-            );
+            return <option key={`${listOption}-${index}`}>{listOption}</option>;
           })}
         </datalist>
         <p>Options:</p>
