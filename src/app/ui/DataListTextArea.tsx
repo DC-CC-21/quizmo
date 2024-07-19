@@ -37,7 +37,7 @@ export default function DataListTextArea({
         onChange={typeText}
         onBlur={() => {
           setTimeout(() => {
-            // setShowOptions(false);
+            setShowOptions(false);
           }, 100);
         }}
         value={text}

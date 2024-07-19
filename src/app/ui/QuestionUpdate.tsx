@@ -48,6 +48,13 @@ export default function QuestionUpdate({
         // Delete an option from the current question at the specified index
         questionData[currentQuestionIndex].options.splice(index, 1);
         break;
+      case "AddAll":
+        // Add all the options to the current question
+        questionData[currentQuestionIndex].options = [
+          ...questionData[currentQuestionIndex].options,
+          ...allOptions,
+        ]
+        break;
     }
 
     // Update the data state with the modified question data
@@ -171,7 +178,7 @@ export default function QuestionUpdate({
         <p>Options:</p>
         <ul className="border-2 border-d_blue rounded-md border-dashed">
           {/* Buttons to add an option */}
-          <li>
+          <li className="flex flex-row gap-1 p-1">
             {/* Buttons to add an option */}
             <button
               type="button"
@@ -180,7 +187,17 @@ export default function QuestionUpdate({
               }}
               className="w-[80%] mx-auto block p-2 rounded-xl border border-white bg-lime-400 m-2"
             >
-              Add Option
+              Add One Option
+            </button>
+            {/* Buttons to add an option */}
+            <button
+              type="button"
+              onClick={() => {
+                OptionHandler("AddAll");
+              }}
+              className="w-[80%] mx-auto block p-2 rounded-xl border border-white bg-lime-400 m-2"
+            >
+              Add All Options
             </button>
           </li>
 
@@ -248,7 +265,7 @@ export default function QuestionUpdate({
           <>
             <div className="animate-[ping_1.5s_ease-in-out_infinite] absolute right-0 top-0 rounded-full bg-lime-300 border-[1px] border-sky-400 w-[20px] h-[20px]"></div>
             <div className="absolute right-0 top-0 rounded-full bg-lime-300 border-[1px] border-sky-400 w-[20px] h-[20px] text-sm text-black">
-              {changes}
+              {/* {changes} */}
             </div>
           </>
         )}
