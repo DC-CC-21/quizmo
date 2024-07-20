@@ -90,16 +90,30 @@ function MultipleChoiceView(
         let bg = "bg-white border-l_blue border-2";
         if (selected === "") {
           bg += " hover:bg-lime-300";
-        }
-        if (selected === option) {
+        } else if (selected === option) {
           if (option === question.answer) {
             bg = "bg-lime-300 border-sky-500 border-4";
           } else {
             bg = bg.replace(/bg-[\w-]+/g, "bg-red-400");
           }
+        } else {
+          if (option === question.answer) {
+            bg = bg.replace(
+              /bg-[\w-]+/g,
+              "bg-lime-300 border-2 border-red-500",
+            );
+          }
         }
         console.log(bg);
         let sanitizedOption = DOMPurify.sanitize(option);
+        let text = "Your pick";
+        if (selected === option && selected === question.answer) {
+          text = "Correct!";
+        } else if (option === question.answer) {
+          text = "This is the correct answer!";
+        } else if (selected !== option) {
+          text = "";
+        }
         // Render the button for each option
         return (
           <button
@@ -110,7 +124,8 @@ function MultipleChoiceView(
             key={option}
             className={`${bg} p-5 mx-auto w-[80%] text-lg rounded-lg my-2 break-words text-left`}
           >
-            {option} {/*sanitizedOption*/}
+            {option} {selected && <span className="text-xl p-2">{text}</span>}{" "}
+            {/*sanitizedOption*/}
           </button>
         );
       })}

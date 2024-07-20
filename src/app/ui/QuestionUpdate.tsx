@@ -53,7 +53,7 @@ export default function QuestionUpdate({
         questionData[currentQuestionIndex].options = [
           ...questionData[currentQuestionIndex].options,
           ...allOptions,
-        ]
+        ];
         break;
     }
 
